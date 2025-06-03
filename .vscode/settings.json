@@ -1,0 +1,103 @@
+{
+    // Theme
+    "workbench.colorTheme": "Rosé Pine Dawn",
+    "workbench.tree.enableStickyScroll": true,
+    "workbench.preferredDarkColorTheme": "Bearded Theme Arc Blueberry",
+    "workbench.preferredLightColorTheme": "Kary Pro Colors － Light",
+    "workbench.activityBar.location": "top",
+    "workbench.sideBar.location": "left",
+    "workbench.view.alwaysShowHeaderActions": true,
+    "workbench.editor.alwaysShowEditorActions": true,
+    "workbench.externalBrowser": "chrome",
+    "workbench.panel.showLabels": true,
+    // -- Debug
+    "debug.showVariableTypes": true,
+    // More settings...
+    "window.autoDetectColorScheme": true,
+    "window.zoomLevel": 1,
+    "files.eol": "\r\n",
+    // Editor
+    "editor.inlayHints.maximumLength": 46,
+    "editor.lightbulb.enabled": "on",
+    "editor.stickyScroll.enabled": true,
+    "editor.wordWrap": "on",
+    "editor.rulers": [80, 120],
+    "workbench.colorCustomizations": {
+      "editorRuler.foreground": "#ff4081"
+    },
+    "files.trimTrailingWhitespace": true,
+    "editor.cursorStyle": "line",
+    "editor.cursorWidth": 5,
+    "editor.cursorBlinking": "solid",
+    "editor.renderWhitespace": "all",
+    "editor.lineHeight": 26,
+    "editor.letterSpacing": 0.1,
+    "editor.fontSize": 17,
+    "editor.fontFamily": "'Cascadia Code', 'Fira Code', Consolas, 'Courier New', monospace",
+    "editor.fontWeight": "400",
+    "editor.fontLigatures": "'calt', 'ss01', 'ss02', 'ss03', 'ss04', 'ss05', 'ss06', 'zero', 'onum'",
+    "editor.minimap.enabled": false,
+    "editor.linkedEditing": true,
+    "editor.guides.bracketPairs": true,
+    /* JS */
+    "javascript.referencesCodeLens.enabled": true,
+    "javascript.referencesCodeLens.showOnAllFunctions": true,
+    // Typescript
+    "typescript.implementationsCodeLens.enabled": true,
+    "typescript.referencesCodeLens.enabled": true,
+    "typescript.referencesCodeLens.showOnAllFunctions": true,
+    "typescript.inlayHints.parameterNames.enabled": "all",
+    /* Diff editor */
+    "diffEditor.wordWrap": "on",
+    "diffEditor.codeLens": true,
+    "diffEditor.experimental.showMoves": true,
+    "diffEditor.hideUnchangedRegions.enabled": true,
+    "[markdown]": {
+      "diffEditor.codeLens": true,
+      "diffEditor.experimental.showMoves": true
+    },
+    // Enable/disable Commit signing
+    "git.enableCommitSigning": false,
+    // By extension
+    // ---- Enable/disable Commit signing
+    "git-graph.repository.commits.showSignatureStatus": false,
+    "git-graph.repository.sign.commits": false,
+    "git-graph.repository.sign.tags": false,
+    // --- icon theme
+    "workbench.iconTheme": "vscode-icons",
+    // -- Editor and formatter
+    "editor.codeActionsOnSave": {
+      "source.fixAll": "explicit"
+    },
+    "editor.formatOnSave": true,
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "[json]": {
+      "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "[jsonc]": {
+      "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "[html]": {
+      "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "[css]": {
+      "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "[scss]": {
+      "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "[javascript]": {
+      "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "[mdx]": {
+      "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "[typescriptreact]": {
+      "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "[svg]": {
+      "editor.defaultFormatter": "jock.svg"
+    },
+    "totalTypeScript.hideAllTips": true,
+    "totalTypeScript.hideBasicTips": true
+  }
