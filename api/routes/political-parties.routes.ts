@@ -6,7 +6,7 @@ const router = Router();
 
 router.get("/", async (req, res) => {
   try {
-    const results = await pool.query("SELECT * FROM political_parties");
+    const results = await pool.query("SELECT * FROM political_party");
     const total = results.rows.length;
 
     // Convert the result to a JSON object: PoliticalParty
@@ -24,6 +24,8 @@ router.get("/", async (req, res) => {
         ballot_status: row.ballot_status,
         presidential_candidate: row.presidential_candidate,
         vice_presidential_candidate: row.vice_presidential_candidate,
+        created_at: row.created_at,
+        updated_at: row.updated_at,
       };
     });
 
@@ -38,7 +40,7 @@ router.get("/:id", async (req, res) => {
   try {
     const { id } = req.params;
     const results = await pool.query(
-      "SELECT * FROM political_parties WHERE id = $1",
+      "SELECT * FROM political_party WHERE id = $1",
       [id]
     );
     const data: PoliticalParty = results.rows[0];
@@ -65,7 +67,7 @@ router.post("/", async (req, res) => {
       vice_presidential_candidate,
     } = req.body;
     const results = await pool.query(
-      "INSERT INTO political_parties (name, abbreviation, founded_date, ideology, leader, headquarters, website, number_of_members, ballot_status, presidential_candidate, vice_presidential_candidate) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11) RETURNING *",
+      "INSERT INTO political_party (name, abbreviation, founded_date, ideology, leader, headquarters, website, number_of_members, ballot_status, presidential_candidate, vice_presidential_candidate) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11) RETURNING *",
       [
         name,
         abbreviation,
@@ -91,6 +93,8 @@ router.post("/", async (req, res) => {
 router.put("/:id", async (req, res) => {
   try {
     const { id } = req.params;
+
+    const updated_at = new Date().toISOString();
     const {
       name,
       abbreviation,
@@ -105,7 +109,7 @@ router.put("/:id", async (req, res) => {
       vice_presidential_candidate,
     } = req.body;
     const results = await pool.query(
-      "UPDATE political_parties SET name = $1, abbreviation = $2, founded_date = $3, ideology = $4, leader = $5, headquarters = $6, website = $7, number_of_members = $8, ballot_status = $9, presidential_candidate = $10, vice_presidential_candidate = $11 WHERE id = $12 RETURNING *",
+      "UPDATE political_party SET name = $1, abbreviation = $2, founded_date = $3, ideology = $4, leader = $5, headquarters = $6, website = $7, number_of_members = $8, ballot_status = $9, presidential_candidate = $10, vice_presidential_candidate = $11, updated_at = $12 WHERE id = $13 RETURNING *",
       [
         name,
         abbreviation,
@@ -119,6 +123,7 @@ router.put("/:id", async (req, res) => {
         presidential_candidate,
         vice_presidential_candidate,
         id,
+        updated_at,
       ]
     );
     const data: PoliticalParty = results.rows[0];
@@ -132,7 +137,7 @@ router.put("/:id", async (req, res) => {
 router.delete("/:id", async (req, res) => {
   try {
     const { id } = req.params;
-    await pool.query("DELETE FROM political_parties WHERE id = $1", [id]);
+    await pool.query("DELETE FROM political_party WHERE id = $1", [id]);
     res.status(200).json({ message: "Political party deleted successfully" });
   } catch (error) {
     console.error(error);
