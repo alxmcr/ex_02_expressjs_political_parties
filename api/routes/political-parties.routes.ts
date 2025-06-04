@@ -39,7 +39,7 @@ router.get("/:id", async (req, res) => {
   try {
     const { id } = req.params;
     const results = await pool.query(
-      "SELECT * FROM political_parties WHERE id = $1",
+      `SELECT * FROM ${TABLE_NAME} WHERE id = $1`,
       [id]
     );
     const data: PoliticalParty = results.rows[0];
