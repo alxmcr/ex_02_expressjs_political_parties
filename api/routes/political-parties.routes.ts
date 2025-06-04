@@ -1,6 +1,10 @@
 import { Router } from "express";
 import pool from "../config/db.config";
-import { PoliticalParty, PoliticalPartyDataNew } from "../types/service.types";
+import {
+  PoliticalParty,
+  PoliticalPartyDataEdit,
+  PoliticalPartyDataNew,
+} from "../types/service.types";
 
 const router = Router();
 const TABLE_NAME = "political_party";
@@ -96,29 +100,15 @@ router.put("/:id", async (req, res) => {
     const {
       name,
       abbreviation,
-      founded_date,
-      ideology,
-      leader,
-      headquarters,
-      website,
-      number_of_members,
-      ballot_status,
       presidential_candidate,
       vice_presidential_candidate,
-    } = req.body;
+    } = req.body as PoliticalPartyDataEdit;
     const results = await pool.query(
-      `UPDATE ${TABLE_NAME} SET name = $1, abbreviation = $2, founded_date = $3, ideology = $4, leader = $5, headquarters = $6, website = $7, number_of_members = $8, ballot_status = $9, presidential_candidate = $10, vice_presidential_candidate = $11 WHERE id = $12 RETURNING *`,
+      `UPDATE ${TABLE_NAME} SET name = $1, abbreviation = $2, presidential_candidate = $3, vice_presidential_candidate = $4 WHERE id = $5 RETURNING *`,
 
       [
         name,
         abbreviation,
-        founded_date,
-        ideology,
-        leader,
-        headquarters,
-        website,
-        number_of_members,
-        ballot_status,
         presidential_candidate,
         vice_presidential_candidate,
         id,
