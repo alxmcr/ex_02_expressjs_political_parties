@@ -55,7 +55,17 @@
             "required": true,
             "schema": { "type": "integer" }
           }
-        ]
+        ],
+        "responses": {
+          "200": {
+            "description": "A political party",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/PoliticalParty" }
+              }
+            }
+          }
+        }
       },
       "put": {
         "summary": "Update a political party",
