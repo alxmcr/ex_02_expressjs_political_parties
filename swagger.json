@@ -1,0 +1,108 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Political Parties API",
+    "version": "1.0.0",
+    "description": "API for managing political parties"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:5500",
+      "description": "Local Server"
+    }
+  ],
+  "paths": {
+    "/api/political-parties": {
+      "get": {
+        "summary": "Get all political parties",
+        "responses": {
+          "200": {
+            "description": "A list of political parties",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/PoliticalParty"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "summary": "Create a new political party",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PoliticalParty"
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "summary": "Update a political party",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PoliticalParty"
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "summary": "Delete a political party",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ]
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "PoliticalParty": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer"
+          },
+          "name": {
+            "type": "string"
+          },
+          "abbreviation": {
+            "type": "string"
+          },
+          "founded_date": {
+            "type": "string"
+          },
+          "ideology": {
+            "type": "string"
+          },
+          "leader": {
+            "type": "string"
+          },
+          "headquarters": {
+            "type": "string"
+          },
+          "website": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
+}
