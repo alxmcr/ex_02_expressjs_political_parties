@@ -43,19 +43,30 @@
             }
           }
         }
+      }
+    },
+    "/api/political-parties/{id}": {
+      "get": {
+        "summary": "Get a political party by ID",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "integer" }
+          }
+        ]
       },
       "put": {
         "summary": "Update a political party",
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/PoliticalParty"
-              }
-            }
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "integer" }
           }
-        }
+        ]
       },
       "delete": {
         "summary": "Delete a political party",
@@ -64,9 +75,7 @@
             "name": "id",
             "in": "path",
             "required": true,
-            "schema": {
-              "type": "integer"
-            }
+            "schema": { "type": "integer" }
           }
         ]
       }
