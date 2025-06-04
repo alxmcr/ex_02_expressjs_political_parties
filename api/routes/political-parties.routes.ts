@@ -1,6 +1,6 @@
 import { Router } from "express";
 import pool from "../config/db.config";
-import { PoliticalParty } from "../types/service.types";
+import { PoliticalParty, PoliticalPartyDataNew } from "../types/service.types";
 
 const router = Router();
 const TABLE_NAME = "political_party";
@@ -56,15 +56,18 @@ router.get("/:id", async (req, res) => {
 
 router.post("/", async (req, res) => {
   try {
-    console.log(req.body);
+    console.log("req.body ->", req.body);
+
     const {
       name,
       abbreviation,
       presidential_candidate,
       vice_presidential_candidate,
-      created_at,
-      updated_at,
-    } = req.body;
+    } = req.body as PoliticalPartyDataNew;
+
+    const created_at = new Date().toISOString();
+    const updated_at = new Date().toISOString();
+
     const results = await pool.query(
       `INSERT INTO ${TABLE_NAME} (name, abbreviation, presidential_candidate, vice_presidential_candidate, created_at, updated_at) VALUES ($1, $2, $3, $4, $5, $6) RETURNING *`,
 
