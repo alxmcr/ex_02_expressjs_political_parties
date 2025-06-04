@@ -3,10 +3,11 @@ import pool from "../config/db.config";
 import { PoliticalParty } from "../types/service.types";
 
 const router = Router();
+const TABLE_NAME = "political_party";
 
 router.get("/", async (req, res) => {
   try {
-    const results = await pool.query("SELECT * FROM political_parties");
+    const results = await pool.query(`SELECT * FROM ${TABLE_NAME}`);
     const total = results.rows.length;
 
     // Convert the result to a JSON object: PoliticalParty
@@ -65,7 +66,7 @@ router.post("/", async (req, res) => {
       vice_presidential_candidate,
     } = req.body;
     const results = await pool.query(
-      "INSERT INTO political_parties (name, abbreviation, founded_date, ideology, leader, headquarters, website, number_of_members, ballot_status, presidential_candidate, vice_presidential_candidate) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11) RETURNING *",
+      `INSERT INTO ${TABLE_NAME} (name, abbreviation, founded_date, ideology, leader, headquarters, website, number_of_members, ballot_status, presidential_candidate, vice_presidential_candidate) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11) RETURNING *`,
       [
         name,
         abbreviation,
@@ -105,7 +106,7 @@ router.put("/:id", async (req, res) => {
       vice_presidential_candidate,
     } = req.body;
     const results = await pool.query(
-      "UPDATE political_parties SET name = $1, abbreviation = $2, founded_date = $3, ideology = $4, leader = $5, headquarters = $6, website = $7, number_of_members = $8, ballot_status = $9, presidential_candidate = $10, vice_presidential_candidate = $11 WHERE id = $12 RETURNING *",
+      `UPDATE ${TABLE_NAME} SET name = $1, abbreviation = $2, founded_date = $3, ideology = $4, leader = $5, headquarters = $6, website = $7, number_of_members = $8, ballot_status = $9, presidential_candidate = $10, vice_presidential_candidate = $11 WHERE id = $12 RETURNING *`,
       [
         name,
         abbreviation,
@@ -132,7 +133,7 @@ router.put("/:id", async (req, res) => {
 router.delete("/:id", async (req, res) => {
   try {
     const { id } = req.params;
-    await pool.query("DELETE FROM political_parties WHERE id = $1", [id]);
+    await pool.query(`DELETE FROM ${TABLE_NAME} WHERE id = $1`, [id]);
     res.status(200).json({ message: "Political party deleted successfully" });
   } catch (error) {
     console.error(error);
