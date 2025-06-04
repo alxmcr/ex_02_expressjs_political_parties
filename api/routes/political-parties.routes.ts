@@ -56,35 +56,25 @@ router.get("/:id", async (req, res) => {
 
 router.post("/", async (req, res) => {
   try {
+    console.log(req.body);
     const {
       name,
       abbreviation,
-      founded_date,
-      ideology,
-      leader,
-      headquarters,
-      website,
-      number_of_members,
-      ballot_status,
       presidential_candidate,
       vice_presidential_candidate,
+      created_at,
+      updated_at,
     } = req.body;
     const results = await pool.query(
-
-      `INSERT INTO ${TABLE_NAME} (name, abbreviation, founded_date, ideology, leader, headquarters, website, number_of_members, ballot_status, presidential_candidate, vice_presidential_candidate) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11) RETURNING *`,
+      `INSERT INTO ${TABLE_NAME} (name, abbreviation, presidential_candidate, vice_presidential_candidate, created_at, updated_at) VALUES ($1, $2, $3, $4, $5, $6) RETURNING *`,
 
       [
         name,
         abbreviation,
-        founded_date,
-        ideology,
-        leader,
-        headquarters,
-        website,
-        number_of_members,
-        ballot_status,
         presidential_candidate,
         vice_presidential_candidate,
+        created_at,
+        updated_at,
       ]
     );
     const data: PoliticalParty = results.rows[0];
