@@ -94,6 +94,7 @@ router.post("/", async (req, res) => {
 
 router.put("/:id", async (req, res) => {
   try {
+    console.log("req.body ->", req.body);
     const { id } = req.params;
 
     const updated_at = new Date().toISOString();
@@ -104,15 +105,15 @@ router.put("/:id", async (req, res) => {
       vice_presidential_candidate,
     } = req.body as PoliticalPartyDataEdit;
     const results = await pool.query(
-      `UPDATE ${TABLE_NAME} SET name = $1, abbreviation = $2, presidential_candidate = $3, vice_presidential_candidate = $4 WHERE id = $5 RETURNING *`,
+      `UPDATE ${TABLE_NAME} SET name = $1, abbreviation = $2, presidential_candidate = $3, vice_presidential_candidate = $4, updated_at = $5 WHERE id = $6 RETURNING *`,
 
       [
         name,
         abbreviation,
         presidential_candidate,
         vice_presidential_candidate,
-        id,
         updated_at,
+        id,
       ]
     );
     const data: PoliticalParty = results.rows[0];
