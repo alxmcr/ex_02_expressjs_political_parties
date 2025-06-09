@@ -142,5 +142,9 @@ dist
 
 .DS_Store
 
+# Environment variables
 .env*
 !.env.example
+
+# JS files
+*.js
