@@ -8,7 +8,11 @@
   "servers": [
     {
       "url": "http://localhost:5500",
-      "description": "Local Server"
+      "description": "[Dev] Local Server"
+    },
+    {
+      "url": "https://ex-02-expressjs-political-parties.onrender.com",
+      "description": "[Prod] Render Server"
     }
   ],
   "paths": {
