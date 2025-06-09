@@ -12,6 +12,16 @@
     }
   ],
   "paths": {
+    "/api/status/ping": {
+      "get": {
+        "summary": "Ping the server",
+        "responses": {
+          "200": {
+            "description": "Pong!"
+          }
+        }
+      }
+    },
     "/api/political-parties": {
       "get": {
         "summary": "Get all political parties",
